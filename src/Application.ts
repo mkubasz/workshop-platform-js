@@ -1,10 +1,10 @@
-import { ExampleConfig } from "./modules/example/application/ExampleConfig";
-import { BaseExampleRoutes } from "./modules/example/BaseExampleConfig";
+import { CommandConfig } from "./modules/command/application/CommandConfig";
+import { BaseCommandRoutes } from "./modules/command/BaseCommandConfig";
 
 export const Application = ({}) => {
-    const { exampleFacade } = ExampleConfig({});
-    const exampleRoutes = BaseExampleRoutes(exampleFacade);
+    const { commandFacade } = CommandConfig({});
+    const CommandRoutes = BaseCommandRoutes(commandFacade);
 
 
-    return { };
+    return { app: {} };
 };
