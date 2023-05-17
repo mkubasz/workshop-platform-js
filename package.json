@@ -2,8 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:Lootboy/backend.git",
-  "author": "Lootboy",
+  "author": "Mateusz Kubasze",
   "license": "MIT",
   "private": true,
   "scripts": {
