@@ -10,6 +10,9 @@ import {Application} from "./Application";
 
     const { db, connection } = await DatabaseConfig();
     const { app } = Application({});
-    const port = process.env.PORT || 3000;
-   // app.listen(port);
+    const host = process.env.HOST || "localhost";
+    const port = Number(process.env.PORT) || 3000;
+    app.listen(port, host, undefined,() => {
+        console.log(`Server is running on http://${host}:${port}`);
+    });
 })();

@@ -9,7 +9,7 @@
     "build": "tsc",
     "prebuild": "yarn run clean",
     "clean": "rm -rf ./dist",
-    "start": "ts-node",
+    "start": "ts-node ./src/Server.ts",
     "watch": "ts-node-dev --respawn",
     "test:unit": "jest **/*.test.ts",
     "test:component": "jest **/*.ctest.ts",
