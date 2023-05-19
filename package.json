@@ -10,8 +10,8 @@
     "prebuild": "yarn run clean",
     "clean": "rm -rf ./dist",
     "start": "ts-node ./src/Server.ts",
-    "watch": "ts-node-dev --respawn",
-    "test:unit": "jest **/*.test.ts",
+    "watch": "nodemon --watch './src/**/*.ts' --ignore './src/**/*.*test.ts' --exec 'ts-node' ./src/Server.ts",
+    "test:unit": "node --test **/*.test.ts",
     "test:component": "jest **/*.ctest.ts",
     "test:integration": "jest **/*.itest.ts",
     "test": "yarn-run-all --parallel test:unit test:component test:integration",
@@ -37,17 +37,16 @@
     "eslint": "8.40.0",
     "husky": "8.0.3",
     "lint-staged": "13.2.2",
+    "nodemon": "2.0.22",
     "prettier": "2.8.8",
     "yarn-run-all": "3.1.1"
   },
   "dependencies": {
-    "zod": "3.21.4",
     "dotenv": "16.0.3",
+    "fastify": "4.17.0",
     "pino": "8.14.1",
-    "ts-node": "10.9.1",
-    "ts-node-dev": "2.0.0",
     "typescript": "5.0.4",
     "uuid": "9.0.0",
-    "fastify": "4.17.0"
+    "zod": "3.21.4"
   }
 }
