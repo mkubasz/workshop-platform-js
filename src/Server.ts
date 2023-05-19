@@ -1,4 +1,6 @@
-import {Application} from "./Application";
+import { fastify } from "fastify";
+import { pino } from "pino";
+import { Application } from "./Application";
 
 (async () => {
     async function DatabaseConfig() {
@@ -9,10 +11,20 @@ import {Application} from "./Application";
     }
 
     const { db, connection } = await DatabaseConfig();
-    const { app } = Application({});
+    const { routes } = Application({});
+
     const host = process.env.HOST || "localhost";
     const port = Number(process.env.PORT) || 3000;
-    app.listen(port, host, undefined,() => {
-        console.log(`Server is running on http://${host}:${port}`);
-    });
+    const logger = pino({ name: "Scripts" });
+    const server = fastify({ logger });
+    routes.flat().map(route => server.route(route));
+
+    await (async () => {
+        try {
+            await server.listen({port, host});
+        } catch (err) {
+            server.log.error(err)
+            process.exit(1)
+        }
+    })();
 })();
