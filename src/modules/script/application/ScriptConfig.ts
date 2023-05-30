@@ -1,7 +1,8 @@
 import { ScriptFacade } from './ScriptFacade';
 import { InMemoryScriptRepository } from "../infrastructure/InMemoryScriptRepository";
 
-export const ScriptConfig = ({}) => {
+export const ScriptConfig = ({
+                             }) => {
     const repository = InMemoryScriptRepository({});
 
     const scriptFacade = ScriptFacade({

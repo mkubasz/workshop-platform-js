@@ -1,8 +1,8 @@
 import { fastify } from "fastify";
 import { pino } from "pino";
 import { Application } from "./Application";
+export const Server = async () => {
 
-(async () => {
     async function DatabaseConfig() {
         return {
             db: null,
@@ -10,16 +10,23 @@ import { Application } from "./Application";
         }
     }
 
-    const { db, connection } = await DatabaseConfig();
-    const { routes } = Application({});
+    const {db, connection} = await DatabaseConfig();
+    const {routes} = Application({});
 
-    const host = process.env.HOST || "localhost";
-    const port = Number(process.env.PORT) || 3000;
-    const logger = pino({ name: "Scripts" });
-    const server = fastify({ logger });
+    const logger = pino({name: "Scripts"});
+    const server = fastify({logger});
+    server.get("/health", async (req, res) => {
+        return {status: "ok"};
+    });
     routes.flat().map(route => server.route(route));
+    return { server };
+}
 
+(async () => {
     await (async () => {
+        const host = process.env.HOST || "localhost";
+        const port = Number(process.env.PORT) || 3000;
+        const { server } = await Server();
         try {
             await server.listen({port, host});
         } catch (err) {

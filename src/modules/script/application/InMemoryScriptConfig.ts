@@ -1,5 +1,5 @@
-import { Script } from "../domain/Script";
 import { InMemoryScriptRepository } from "../infrastructure/InMemoryScriptRepository";
+import { Script } from "../domain/Script";
 import { ScriptFacade } from "./ScriptFacade";
 
 export const ScriptConfig = () => {
@@ -8,7 +8,7 @@ export const ScriptConfig = () => {
     const script = Script({ repository });
     const scriptFacade = ScriptFacade({
         repository,
-        script
+
     });
 
 };

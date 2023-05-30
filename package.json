@@ -11,7 +11,7 @@
     "clean": "rm -rf ./dist",
     "start": "ts-node ./src/Server.ts",
     "watch": "nodemon --watch './src/**/*.ts' --ignore './src/**/*.*test.ts' --exec 'ts-node' ./src/Server.ts",
-    "test:unit": "node --test **/*.test.ts",
+    "test:unit": "tsc && node --test ./dist/**/*.test.js",
     "test:component": "jest **/*.ctest.ts",
     "test:integration": "jest **/*.itest.ts",
     "test": "yarn-run-all --parallel test:unit test:component test:integration",
