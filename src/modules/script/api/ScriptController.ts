@@ -1,5 +1,6 @@
 import { ScriptFacade } from "../application/ScriptFacade";
-import { Script, ScriptParser } from "./ScriptParser";
+import { Script, ScriptBodyParseError, ScriptParser } from "./ScriptParser";
+import { ZodIssue } from "zod";
 
 export type ScriptController = ReturnType<typeof ScriptController>;
 export const ScriptController = (scriptFacade: ScriptFacade) => {
@@ -11,9 +12,12 @@ export const ScriptController = (scriptFacade: ScriptFacade) => {
             const { body } = req;
             const scriptObject = ScriptParser.safeParse(body);
             if (!scriptObject.success) {
-                return res.send(scriptObject.error);
+                const scriptBodyParseError = ScriptBodyParseError(scriptObject.error.issues);
+                res.status(scriptBodyParseError.statusCode);
+                return res.send({ error: scriptBodyParseError.message });
             }
             const result = await scriptFacade.addScript(scriptObject.data as Script);
+            res.status(201);
             res.send(result);
         }
     };
