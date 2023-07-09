@@ -1,6 +1,6 @@
 import { z, ZodIssue } from 'zod';
 
-export const ScriptParser = z.object({
+export const WorkshopParser = z.object({
     name: z.string().optional(),
     description: z.string().optional(),
     script: z.string(),
@@ -9,7 +9,7 @@ export const ScriptParser = z.object({
     group: z.string().optional(),
 });
 
-export const ScriptBodyParseError = (issues: ZodIssue[]) => {
+export const WorkshopBodyParseError = (issues: ZodIssue[]) => {
     const errorMessages = issues.map(issue => `Error: Failed to parse ${issue.message} properties: ${issue.path.join()}.`);
     return {
         statusCode: 400,
@@ -17,4 +17,4 @@ export const ScriptBodyParseError = (issues: ZodIssue[]) => {
     }
 };
 
-export type Script = z.infer<typeof ScriptParser>;
+export type Workshop = z.infer<typeof WorkshopParser>;

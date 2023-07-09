@@ -13,7 +13,7 @@ export const Server = async () => {
     const {db, connection} = await DatabaseConfig();
     const {routes} = Application({});
 
-    const logger = pino({name: "Scripts"});
+    const logger = pino({name: "Workshops"});
     const server = fastify({logger});
     server.get("/health", async (req, res) => {
         return {status: "ok"};

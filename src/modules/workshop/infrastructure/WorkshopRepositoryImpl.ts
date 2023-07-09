@@ -1,6 +1,6 @@
-import { ScriptRepository } from "../domain/ScriptRepository";
+import { WorkshopRepository } from "../domain/WorkshopRepository";
 
-export const ScriptRepositoryImpl = ({}): ScriptRepository => {
+export const WorkshopRepositoryImpl = ({}): WorkshopRepository => {
     return {
         create: async (script: any) => {
             return { hello: "world" };

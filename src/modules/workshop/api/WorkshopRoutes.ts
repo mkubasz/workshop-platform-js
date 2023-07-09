@@ -1,9 +1,9 @@
-import { ScriptController } from "./ScriptController";
+import { WorkshopController } from "./WorkshopController";
 import { HttpMethod } from "@shared/utils/HttpMethod";
-export type ScriptRoutes = ReturnType<typeof ScriptRoutes>;
+export type WorkshopRoutes = ReturnType<typeof WorkshopRoutes>;
 
 
-export const ScriptRoutes = (scriptController: ScriptController) => {
+export const WorkshopRoutes = (scriptController: WorkshopController) => {
     const buildUrl = (path: string) => `/script${path}`;
     return [
         { method: HttpMethod.get, url: buildUrl(''), handler: scriptController.get },

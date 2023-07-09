@@ -1,6 +1,6 @@
 import { Server } from "../Server";
 
-describe("Script service", function () {
+describe("Workshop service", function () {
     const close = () => Promise<void>;
     let server: any;
     beforeAll(async () => {
@@ -20,7 +20,7 @@ describe("Script service", function () {
         expect(JSON.parse(response.body)).toStrictEqual({ scripts: [] });
     });
 
-    it("should add new script", async function () {
+    it("should add new workshop", async function () {
         const payload = {
             name: "test",
             script: "test",
@@ -41,7 +41,7 @@ describe("Script service", function () {
         expect(JSON.parse(responseGET.body)).toStrictEqual({ scripts: [payload] });
     });
 
-    it("should failed when script is empty", async function () {
+    it("should failed when workshop is empty", async function () {
         const payload = {
             name: "test",
         };
@@ -53,6 +53,6 @@ describe("Script service", function () {
         });
 
         expect(responsePOST.statusCode).toBe(400);
-        expect(JSON.parse(responsePOST.body)).toStrictEqual({ error: "Error: Failed to parse Required properties: script." });
+        expect(JSON.parse(responsePOST.body)).toStrictEqual({ error: "Error: Failed to parse Required properties: workshop." });
     });
 });

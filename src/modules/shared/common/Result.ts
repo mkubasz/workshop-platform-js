@@ -1,9 +1,13 @@
 // Monad types
-export type Ok<T> = { ok: true; value: T };
-export type Err<E> = { ok: false; error: E };
+enum ResultType {
+    Ok,
+    Err,
+}
+export type Ok<T> = { kind: ResultType.Ok; value: T };
+export type Err<E> = { kind: ResultType.Err; error: E };
 export type Result<T, E> = Ok<T> | Err<E>;
 
 
-export const ok = <T>(value: T): Ok<T> => ({ ok: true, value });
-export const err = <E>(error: E): Err<E> => ({ ok: false, error });
+export const ok = <T>(value: T): Ok<T> => ({ kind: ResultType.Ok, value });
+export const err = <E>(error: E): Err<E> => ({ kind: ResultType.Err, error });
 

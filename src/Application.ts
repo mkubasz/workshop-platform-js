@@ -1,8 +1,8 @@
-import { ScriptConfig } from "./modules/script/application/ScriptConfig";
-import { BaseScriptRoutes } from "./modules/script/BaseScriptConfig";
+import { WorkshopConfig } from "./modules/workshop/application/WorkshopConfig";
+import { BaseWorkshopRoutes } from "./modules/workshop/BaseWorkshopConfig";
 
 export const Application = ({}) => {
-    const { scriptFacade } = ScriptConfig({});
-    const scriptRoutes = BaseScriptRoutes(scriptFacade);
+    const { scriptFacade } = WorkshopConfig({});
+    const scriptRoutes = BaseWorkshopRoutes(scriptFacade);
     return { routes: [ scriptRoutes ] };
 };
