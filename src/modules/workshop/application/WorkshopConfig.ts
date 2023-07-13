@@ -1,12 +1,15 @@
 import { WorkshopFacade } from './WorkshopFacade';
 import { InMemoryWorkshopRepository } from "../infrastructure/InMemoryWorkshopRepository";
+import { InMemoryWorkshopDraftRepository } from '../infrastructure/InMemoryWorkshopDraftRepository';
 
 export const WorkshopConfig = ({
                              }) => {
-    const repository = InMemoryWorkshopRepository({});
+    const workshopRepository = InMemoryWorkshopRepository({});
+    const workshopDraftRepository = InMemoryWorkshopDraftRepository({});
 
     const scriptFacade = WorkshopFacade({
-        repository,
+        workshopRepository,
+        workshopDraftRepository
     });
     return { scriptFacade };
 };

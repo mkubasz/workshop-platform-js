@@ -7,8 +7,11 @@ type WorkshopProps = {
 export type Workshop = ReturnType<typeof Workshop>;
 export const Workshop = ({ repository }: WorkshopProps) => {
     return {
-        addWorkshop: async (script: any) => {
+        prepareDraft: async (script: any) => {
             return repository.create(script);
+        },
+        drafts: async () => {
+            return repository.findAll();
         },
         getWorkshops: async () => {
             return repository.findAll();
