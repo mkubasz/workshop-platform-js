@@ -1,6 +1,5 @@
 import { Server } from "../Server";
-import { z } from 'zod';
-
+import { faker } from '@faker-js/faker';
 describe("Workshop draft process", function () {
     const close = () => Promise<void>;
     let server: any;
@@ -23,23 +22,23 @@ describe("Workshop draft process", function () {
 
     it("should create new draft of workshops", async function () {
         const payload = {
-            title: "Draft test",
-            description: "Draft test description",
-            agenda: "Draft test agenda",
-            attendeesCount: 10,
-            price: 100,
+            title: faker.string.sample(10),
+            description: faker.string.sample(10),
+            agenda: faker.string.sample(10),
+            attendeesCount: faker.number.int({ min: 1, max: 10 }),
+            price: faker.number.int({ min: 1, max: 1000 }),
             workshopLectureRatio: "50/50",
             meetings: [
                 {
-                    startDate: "2021-10-10T10:00:00.000Z",
-                    endDate: "2021-10-10T12:00:00.000Z",
-                    meetingLocation: "Disocrd",
-                    agenda: "Draft test meeting agenda",
+                    startDate: faker.date.future(),
+                    endDate: faker.date.future(),
+                    meetingLocation: faker.string.sample(10),
+                    agenda: faker.string.sample(10),
                 }],
             trainer: {
-                name: "Mateusz",
-                email: "mkubasz@gmail.com",
-                discordNick: "mkubasz#0001",
+                name: faker.name.fullName(),
+                email: faker.internet.email(),
+                discordNick: faker.internet.userName(),
             }
         };
 
