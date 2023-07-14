@@ -1,6 +1,7 @@
 import { fastify } from "fastify";
 import { pino } from "pino";
 import { Application } from "./Application";
+import * as process from 'process';
 
 export const Server = async () => {
   async function DatabaseConfig() {
@@ -33,5 +34,9 @@ export const Server = async () => {
       server.log.error(err);
       process.exit(1);
     }
+    process.on('SIGTERM', () => {
+      server.log.error(`Received SIGTERM`);
+      server.close();
+    })
   })();
 })();
