@@ -4,9 +4,6 @@ on: [push, pull_request]
 
 jobs:
   test:
-    strategy:
-      matrix:
-        shard: [1/3, 2/3, 3/3]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -18,4 +15,4 @@ jobs:
           path: /tmp/jest_rt
           key: ${{ hashFiles('**/package-lock.json') }}-${{ matrix.shard }}
 
-      - run: npm run test:unit -- --maxWorkers=2 --shard=${{ matrix.shard }}
+      - run: npm run test:unit
